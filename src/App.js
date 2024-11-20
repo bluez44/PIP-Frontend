@@ -30,6 +30,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs/>} />
         </Routes>
+        <h1>THIS IS A TEXT FOR VERCEL TEST</h1>
         <Footer/>
       </div>
     </BrowserRouter>
