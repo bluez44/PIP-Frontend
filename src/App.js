@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-slideshow-image/dist/styles.css'
+
+import { useState } from 'react';
+
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+
+import Navigator from './components/Navigator/Index';
+import Footer from './components/Footer'
+import Home from './pages/Home';
+import Jobs from './pages/Jobs';
+
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false);
+  const [isJobSeeker, setIsJobSeeker] = useState(false);
+  const [isRecruiter, setIsRecruiter] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter 
+      future={{
+        v7_startTransition: true,
+      }}
+    >
+      <div className="App">
+        <Navigator/>
+        <Routes>
+          <Route path="/" element={<Home/>} />
+          <Route path="/jobs" element={<Jobs/>} />
+        </Routes>
+        <Footer/>
+      </div>
+    </BrowserRouter>
   );
 }
 

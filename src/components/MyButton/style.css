@@ -1,0 +1,26 @@
+.button__container {
+    padding: 12px 48px;
+    border: 1px solid #BA4A2C;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.button__text {
+    text-align: center;
+    font-size: 16px;
+    color: #BA4A2C;
+    margin: 0;
+}
+
+.button__container,
+.button__text {
+    transition: all .5s;
+}
+
+.button__container:hover {
+    background-color: #BA4A2C;
+}
+
+.button__container:hover .button__text {
+    color: #fff;
+}

@@ -1,0 +1,54 @@
+.home__container:nth-child(odd) {
+    background-color: #f8f8f8;
+}
+
+.home__slider {
+    position: relative;
+    /* height: 650px; */
+}
+
+.home__slider--description {
+    padding: 8px;
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    left: 400px;
+    max-width: 350px;
+}
+
+.home__slider--caption {
+    display: inline-block;
+    /* max-width: 250px; */
+    font-size: 20px;
+    margin-bottom: 16px;
+    color: #000;
+}
+
+.home__img {
+    position: absolute;
+    width: 100%;
+    height: 650px;
+    transition: all .5s;
+}
+
+.home__img:first-child {
+    top: 0;
+    left: 0;
+}
+
+.home__img:last-child {
+    top: 0;
+    right: -100%;
+}
+
+.home__jobs--container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 48px;
+}
+
+.home__jobs {
+    
+}
+
