@@ -1,0 +1,39 @@
+.footer-info {
+    margin-right: 2em;
+}
+
+.section-title {
+    color: #fff;
+}
+
+footer a, footer p {
+    color: #909090;
+}
+
+.footer_menu h2 {
+    color: #fff;
+}
+
+.social-icon {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-color);
+}
+
+.social-icon li {
+    display: inline-block;
+    padding: 16px;
+    margin-right: 8px;
+    transition: all .5s;
+    font-size: 16px;
+}
+
+.social-icon li svg {
+    height: 20px;
+}
+
+.social-icon li:hover {
+    opacity: .8;
+    cursor: pointer;
+}
