@@ -1,8 +1,11 @@
 .button__container {
+    display: block;
+    width: 100%;
     padding: 12px 48px;
     border: 1px solid #BA4A2C;
-    border-radius: 50px;
     cursor: pointer;
+    background-color: transparent;
+    color: #BA4A2C;
 }
 
 .button__text {
@@ -19,6 +22,7 @@
 
 .button__container:hover {
     background-color: #BA4A2C;
+    color: #fff;
 }
 
 .button__container:hover .button__text {

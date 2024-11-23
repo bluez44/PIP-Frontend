@@ -6,11 +6,13 @@ import { useState } from 'react';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+import 'react-toastify/dist/ReactToastify.css';
 
 import Navigator from './components/Navigator/Index';
 import Footer from './components/Footer'
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
+import JobDetails from './pages/JobDetails';
 
 
 function App() {
@@ -29,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs/>} />
+          <Route path="/job-details" element={<JobDetails/>} />
         </Routes>
         <h1>THIS IS A TEXT FOR VERCEL TEST</h1>
         <Footer/>
