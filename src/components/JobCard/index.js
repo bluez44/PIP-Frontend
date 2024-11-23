@@ -1,9 +1,12 @@
 import React from 'react'
 import MyButton from '../MyButton'
+import { useNavigate } from 'react-router-dom'
 
 import './style.css'
 
 export default function JobCard( {imgUrl, location, title, salary, role} ) {
+  const naviagate = useNavigate()
+
   return (
     <div className='job__card'>
         <div className='job__card__infor'>
@@ -20,7 +23,7 @@ export default function JobCard( {imgUrl, location, title, salary, role} ) {
         <hr/>
 
         <div className='job__card__button'>
-            <MyButton text='Xem chi tiết'/>
+            <MyButton onClick={() => naviagate('/job-details')} text='Xem chi tiết'/>
         </div>
     </div>
   )

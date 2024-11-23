@@ -28,4 +28,57 @@
 .navbar__button:hover {
     background-color: #BA4A2C;
     color: #FFCBA3;
+    cursor: pointer;
+}
+
+.modal-content {
+    padding: 24px;
+    padding-bottom: 64px;
+}
+
+.form_input input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 .25rem rgba(186, 74, 44, .25);
+}
+
+.return_button {
+    transition: all .5s;
+    padding: 4px;
+}
+
+.return_button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.return_button svg{
+    font-size: 30px;
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+.slideIn {
+    animation-name: slideIn;
+    animation-duration: 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
