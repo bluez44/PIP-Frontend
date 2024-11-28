@@ -13,8 +13,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import JobDetails from './pages/JobDetails';
-
-
+import UserInfo from './pages/UserInfo';
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [isJobSeeker, setIsJobSeeker] = useState(false);
@@ -32,6 +31,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs/>} />
           <Route path="/job-details" element={<JobDetails/>} />
+          <Route path="/user-info" element={<UserInfo />} />
         </Routes>
         <h1>THIS IS A TEXT FOR VERCEL TEST</h1>
         <Footer/>

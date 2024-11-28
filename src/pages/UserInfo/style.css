@@ -1,0 +1,74 @@
+.user-info__wrapper {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .user-info__container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .user-info__left,
+  .user-info__right {
+    width: 45%;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  input, select, textarea {
+    display: block;
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .user-info__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  button {
+    padding: 10px 15px;
+    background-color: var(--primary-color, #007bff);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: var(--secondary-color, #0056b3);
+  }
+  
+  .cv-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cv-popup__content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+  }
+  
+  .cv-popup__actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  

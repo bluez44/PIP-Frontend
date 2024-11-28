@@ -42,7 +42,8 @@ export default function Navigator({ isLogin, isJobSeeker, isRecruiter }) {
             </Link>
             <Link className='navbar__button' to="/">Home</Link>
             <Link className='navbar__button' to="/jobs">Jobs</Link>
-            {isLogin && <Nav.Link className='navbar__button' href="#link">My page</Nav.Link>}
+            {/* {isLogin &&  */}
+            <Link className='navbar__button' to="/user-info">My page</Link>
             {isRecruiter && <Nav.Link className='navbar__button' href="#link">Posted jobs</Nav.Link>}
           </Nav>
         </Navbar.Collapse>
