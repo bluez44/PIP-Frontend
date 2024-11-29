@@ -13,8 +13,13 @@ import Footer from './components/Footer'
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import JobDetails from './pages/JobDetails';
+
+// Thang
+import UserInfo from './pages/UserInfo';
+
 import UserInfoPage from './pages/UserInfo/UserInfoPage';
 import FormComponent from './pages/ApplyJob';
+
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -33,8 +38,13 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs/>} />
           <Route path="/job-details" element={<JobDetails/>} />
+
+//            Thang 
+          <Route path="/user-info" element={<UserInfo />} />
+
           <Route path='/user-infor' element={<UserInfoPage/>} />
           <Route path='/apply' element={<FormComponent />} />
+
         </Routes>
         {/* <Footer/> */}
       </div>
