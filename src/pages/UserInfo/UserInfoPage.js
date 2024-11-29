@@ -23,13 +23,13 @@ const UserInfoPage = () => {
         <div className="user-info-page">
             <div className="group-container">
                 {/* User Card */}
-                <div class="user-card">
-                    <div class="user-avatar"></div>
-                    <div class="user-details">
+                <div className="user-card">
+                    <div className="user-avatar"></div>
+                    <div className="user-details">
                         <h2>Alexa Rawles</h2>
-                        <p class="email">alexarawles@gmail.com <a href="#" class="edit-email-link">✏️</a></p>
+                        <p className="email">alexarawles@gmail.com <a href="#" className="edit-email-link">✏️</a></p>
                     </div>
-                    <button class="edit-button">Edit</button>
+                    <button className="edit-button">Edit</button>
                 </div>
 
                 {/* Info Groups */}

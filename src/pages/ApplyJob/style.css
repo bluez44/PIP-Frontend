@@ -42,12 +42,13 @@
 
 /* Ellipse 11 */
 .ellipse-11 {
+    z-index: 55555;
     position: absolute;
     width: 93.6px;
     height: 93.61px;
     left: 579px;
     top: 107px;
-    background: url(../../img/logo.png);
+    background-image: url(../../img/logo.png);
 }
 
 /* Group 239179 */

@@ -13,7 +13,8 @@ import Footer from './components/Footer'
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import JobDetails from './pages/JobDetails';
-
+import UserInfoPage from './pages/UserInfo/UserInfoPage';
+import FormComponent from './pages/ApplyJob';
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -27,14 +28,15 @@ function App() {
       }}
     >
       <div className="App">
-        <Navigator/>
+        {/* <Navigator/> */}
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/jobs" element={<Jobs/>} />
           <Route path="/job-details" element={<JobDetails/>} />
+          <Route path='/user-infor' element={<UserInfoPage/>} />
+          <Route path='/apply' element={<FormComponent />} />
         </Routes>
-        <h1>THIS IS A TEXT FOR VERCEL TEST</h1>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </BrowserRouter>
   );
