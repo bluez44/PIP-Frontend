@@ -1,0 +1,29 @@
+.apply_job_modal {
+    position: fixed;
+    z-index: 5555;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.resumes_list {
+    list-style: none;
+    border: 1px solid #ddd;
+}
+
+.apply_job_container {
+    background-color: #fff;
+    max-width: 500px;   
+    padding: 50px 20px;
+}
+
+.resumes_list_item {
+    padding: 10px;
+}
+
+.resumes_list_item:hover {
+    background-color: #dddddd;
+    cursor: pointer;
+}

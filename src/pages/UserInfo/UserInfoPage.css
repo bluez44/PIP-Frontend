@@ -4,7 +4,7 @@
     min-height: 100vh;
     background: #f8f8f8;
     padding-top: 50px;
-
+    padding-bottom: 50px;
 }
 
 .group-container {
@@ -58,6 +58,8 @@
 }
 
 .edit-email-link {
+    border: none;
+    background: none;
     text-decoration: none;
     color: #007bff;
     margin-left: 5px;
@@ -108,4 +110,75 @@
     .info-groups {
         grid-template-columns: 1fr;
     }
+}
+
+
+.address_group::before {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    height: 10px;
+    width: 100%;
+    background-color: transparent;
+    display: block;
+}
+
+.provinces_list {
+    /* display: none; */
+    top: 80px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn ease .3s;
+}
+
+.provinces_item {
+    padding: 10px;
+    transition: all .3s;
+}
+
+.provinces_item:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.resume_list {
+    list-style: none;
+    padding: 0;
+}
+
+.resume_item {
+    padding: 10px;
+    background-color: #fafafa;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.resume_item--name:hover {
+    cursor: pointer;
+}
+
+.resume_item--icon {
+    transition: all .3s;
+}
+
+.resume_item--icon:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.add_resume {
+    transition: all .3s;
+}
+
+.add_resume:hover {
+    color: #007bff;
+    cursor: pointer;
 }
