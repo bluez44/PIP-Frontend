@@ -1,100 +1,132 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import './style.css'
 import MyButton from '../../components/MyButton'
+import axios from '../../api'
+import Cookies from 'js-cookie'
+import { FaLocationDot } from "react-icons/fa6";
+import { MdUpdate } from "react-icons/md";
+import { FaLockOpen } from "react-icons/fa";
 
 import job_img from '../../img/product-1-720x480.jpg'
+import LoadingPage from '../../components/LoadingPage'
+import { toast, ToastContainer } from 'react-toastify'
+import { context } from '../../App'
+import ApplyJobModal from '../../components/ApplyJobModal'
 export default function JobDetails() {
+    const [isLoading, setIsLoading] = useState(false)
+    const [job, setJob] = useState({})
+    
+    const [login, role] = useContext(context)
+    const [isLogin, setIsLogin] = login
+    const [userRole, setUserRole] = role
+
+    const [isShowApplyModal, setIsShowApplyModal] = useState(false)
+    
+    const navigate = useNavigate()
+    
+    const counter = useRef(0)
+    
+    useEffect( () => {
+        //   if(!isLogin) {
+            //       navigate('/')
+            //   }
+            
+    async function getJob() {
+        const jobId = window.location.search.split('=')[1]
+        setIsLoading(true)
+        const token = Cookies.get('token');
+        await axios.get(`/api/v1/apply/getJob/${jobId}`, {
+        headers: {
+            'authorization': `token PkREaAQVGQAehSpcNQ63`
+        },
+        }).then(res => {
+            if(res.data.code === 400) {
+                toast.error('Không tìm thấy công việc')
+            }
+            setIsLoading(false)
+            console.log(res.data)
+            setJob(res.data.job)
+        }).catch(err => console.log('err', err))
+    }
+    // if(isLogin)
+    if(counter.current)
+        getJob()
+    else counter.current = 1
+  }, [])
+
+  const handleOnClick = () => {
+    if(!isLogin) {
+        toast.info('Vui lòng đăng nhập')
+    }
+    else {
+        setIsShowApplyModal(true)
+    }
+  }
+
   return (
     <div className='job_details py-5'>
-        <div className='container shadow p-4 rounded'>
-            <div className='d-flex flex-wrap gap-4 mb-5'>
-                <img 
-                    className='job_img'
-                    src={job_img}
-                    height={175}
-                />
-                <div className='job_wrapper align-content-center'>
-                    <h2 className='job_title'>Security Officer - Luxury Retail</h2>
-                    <p className='job_salary fs-5'><span className='job_salary--number'>$38000</span> per year</p>
-                    <div className='job_infor'>
-                        <span className='job_role'>Security / Protective Services Jobs</span>
-                        <span className='job_location'>London</span>
-                        <span className='job_date'>20-06-2024</span>            
-                    </div>
-                </div>
-            </div>
-
-            <div className='job_content p-4 border border-black rounded'>
-                <div className='job_description'>
-                    <p className='job_description--header fs-3 fw-bold'>Job Description</p>
-                    <p className='job_description--content'>Pro Active Retail Security Officer required to operate in luxury retail environment. Searching for self-motivated individuals who are always looking to achieve the highest standards.</p>
-                </div>
-
-                <div className='job_responsibility'>
-                    <p className='job_responsibility--header fs-3 fw-bold'>Responsibility</p>
-                    <p className='job_responsibility--content'>Regular Report Writing, Liaison between the team and the client and head office, Door Supervision, Staff Search, Random Searches, TAG detector procedures, Risk Assessment, Fire Drills, Alarm Checks, immaculate customer services, deterrent and apprehension of offenders, liaisons with emergency services.</p>
-                </div>
-
-                <div className='job_qualifications'>
-                    <p className='job_qualifications--header fs-3 fw-bold'>Qualifications</p>
-                    <ul className='job_qualifications--content'>
-                        <li>MUST have minimum 1 year experience in RETAIL security (shops).</li>
-                        <li>MUST be Fluent in the English Language (speaking and writing).</li>
-                        <li>MUST hold a valid SIA Door Supervisor Licence.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div className='about_compny p-4 border border-black rounded my-3'>
-                <p className='about_compny--header fs-3 fw-bold'>About Cannon Guards Security ltd</p>
-                <p className='about_compny--content mb-5'>Looking to improve the security at your place of business? If so, we will provide you with the trained security officers and professionally licensed personnel needed for any business. From a security guard for construction site security to private event security, you can be sure to get the very best from our staff. Alternatively we provide tailor-made security guard training for your existing security staff.</p>
-                <div className='row'>
-                    <div className='col-6'>
-                        <div>
-                            <p className='fs-5 mb-0'>Company name</p>
-                            <p className='fs-6 fw-bold'>Cannon Guards Security Ltd</p>
-                        </div>
-
-                        <div>
-                            <p className='fs-5 mb-0'>Phone</p>
-                            <p className='fs-6 fw-bold'>123-456-789</p>
-                        </div>
-
-                        <div>
-                            <p className='fs-5 mb-0'>Email</p>
-                            <p className='fs-6 fw-bold'>z4V9t@example.com</p>
-                        </div>
-
-                        <div>
-                            <p className='fs-5 mb-0'>City</p>
-                            <p className='fs-6 fw-bold'>London</p>
-                        </div>
-                    </div>
-
-                    <div className='col-6'>
-                        <div>
-                            <p className='fs-5 mb-0'>Contact name</p>
-                            <p className='fs-6 fw-bold'>Paul Gordon</p>
-                        </div>
-
-                        <div>
-                            <p className='fs-5 mb-0'>Mobile phone</p>
-                            <p className='fs-6 fw-bold'>456789123</p>
-                        </div>
-
-                        <div>
-                            <p className='fs-5 mb-0'>Website</p>
-                            <p className='fs-6 fw-bold'>http://www.cannonguards.com/</p>
+        {/* <ToastContainer /> */}
+        {isLoading && <LoadingPage />}
+        {isShowApplyModal && <ApplyJobModal onClick={() => setIsShowApplyModal(false)}/>}
+        {
+            job && 
+            <div className='container shadow p-4 rounded'>
+                <div className='d-flex flex-wrap gap-4 mb-5'>
+                    <img 
+                        className='job_img'
+                        src={job_img}
+                        alt='job-img'
+                        height={175}
+                    />
+                    <div className='job_wrapper align-content-center'>
+                        <h2 className='job_title'>{job.title}</h2>
+                        <p className='job_salary fs-5'><span className='job_salary--number'>{job.salary}</span></p>
+                        <div className='job_infor d-flex justify-content-between align-items-center gap-4'>
+                            <div>
+                                <FaLocationDot />
+                                <span className='job_location ms-2'>{job.location}</span>
+                            </div>
+                            <div>
+                                <MdUpdate />
+                                <span className='job_date ms-2'>{job.createdAt?.split('T')[0].split('-').reverse().join('-')}</span>            
+                            </div>
+                            <div>
+                                <FaLockOpen />
+                                <span className='job_role ms-2'>{job.status}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div className='job_content p-4 border border-black rounded mb-4'>
+                    <div className='job_description'>
+                        <p className='job_description--header fs-3 fw-bold'>Job Description</p>
+                        <p className='job_description--content'>{job.description}</p>
+                    </div>
+
+                    <div className='job_qualifications'>
+                        <p className='job_qualifications--header fs-3 fw-bold'>Requirements</p>
+                        <ul className='job_qualifications--content'>
+                            {
+                                job?.requirements?.split('. ').map((item, index) => (
+                                    <li key={index}>{item}</li>
+                                ))
+                            }
+                            <li>Job type: {job.jobType}</li>    
+                        </ul>
+                    </div>
+                </div>
+
+                {job.status === 'open' && userRole == 'job-seeker' &&
+                    <div className='w-25'>
+                        <MyButton text='Ứng tuyển' rounded='pill' onClick={handleOnClick}/>
+                    </div>
+                }
             </div>
 
-            <div className='w-25'>
-                <MyButton text='Ứng tuyển' rounded='pill'/>
-            </div>
-        </div>
+        }
     </div>
   )
 }

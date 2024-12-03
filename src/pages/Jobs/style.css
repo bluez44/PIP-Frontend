@@ -1,3 +1,48 @@
 .job__wrapper {
-    padding-top: 32px;
+    padding: 32px 0;
+}
+
+.job__search__input {
+    outline: none;
+    transition: all .3s;
+}
+
+.job__search__input:focus {
+    border: #BA4A2C 1px solid;
+}
+
+.job__search__icon {
+    transition: all .3s;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    margin-right: 8px;
+    font-size: 20px;
+}
+
+.job__search__icon:hover {
+    opacity: .8;
+    color: red;
+}
+
+.pagination {
+    margin: 0;
+}
+
+.page-item {
+    padding: 4px 8px;
+    border: #BA4A2C 1px solid;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.page-item:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.page-item--active {
+    background-color: #BA4A2C;
+    color: #fff;
 }

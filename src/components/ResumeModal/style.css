@@ -1,0 +1,46 @@
+.modal__container {
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5555;
+    animation: fadeIn ease .5s;
+}
+
+.resume__container {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    max-height: 700px;
+    overflow-y: auto;
+}
+
+.resume__header {
+    text-align: center;
+}
+
+.resume__item__content {
+    padding: 10px;
+    margin-bottom: 0;
+    background-color: #fafafa;
+    border: #ddd 1px solid;
+    border-radius: 4px;
+}
+
+.add_skill {
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.add_skill:hover {
+    color: #007bff;
+}
+
+.delete_skill_icon {
+    transition: all .3s;
+    cursor: pointer;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 10px;
+}
+
+.delete_skill_icon:hover {
+    color: red;
+}

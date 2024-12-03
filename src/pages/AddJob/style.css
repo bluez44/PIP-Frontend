@@ -1,0 +1,7 @@
+.add_job__container {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.add_job__input {
+    padding: 10px;
+}

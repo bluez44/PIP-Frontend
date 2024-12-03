@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import img1 from '../../img/slider-image-2-1920x700.jpg'
 import img2 from '../../img/slider-image-3-1920x700.jpg'
 import { Slide } from 'react-slideshow-image';
+import Cookies from 'js-cookie'
 
 import './style.css'
 import JobCard from '../../components/JobCard'
 import p1 from '../../img/product-1-720x480.jpg'
-import p2 from '../../img/product-2-720x480.jpg'
-import p3 from '../../img/product-3-720x480.jpg'
-import p4 from '../../img/product-4-720x480.jpg'
-import p5 from '../../img/product-5-720x480.jpg'
-import p6 from '../../img/product-6-720x480.jpg'
 import MyButton from '../../components/MyButton';
+import { context } from '../../App';
+import api from '../../api'
+import LoadingPage from '../../components/LoadingPage';
+import { useNavigate } from 'react-router-dom';
 export default function Home() {
   const divStyle = {
     display: 'flex',
@@ -31,7 +31,8 @@ export default function Home() {
       caption: '"Tìm kiếm việc làm đòi hỏi sự kiên nhẫn, chuẩn bị kỹ lưỡng và khả năng kết nối để tìm được vị trí phù hợp với năng lực và đam mê."'
     },
   ];
-  
+
+  const navigate = useNavigate();
 
   return (
     <div className='home__wrapper'>
@@ -42,7 +43,7 @@ export default function Home() {
               <div style={{ ...divStyle, 'backgroundImage': `url(${slideImage.url})` }}>
                 <div className='home__slider--description'>
                   <span className='home__slider--caption'>{slideImage.caption}</span>
-                  <MyButton text='Xem công việc hiện có'/>
+                  <MyButton text='Xem công việc hiện có' onClick={() => {navigate('/jobs')}}/>
                 </div>
               </div>
             </div>
@@ -55,24 +56,22 @@ export default function Home() {
             <p className='home__content--description fs-5'>Monkey là một nền tảng trực tuyến kết nối giữa nhà tuyển dụng và người tìm việc, mang đến giải pháp tuyển dụng nhanh chóng và hiệu quả. Với giao diện thân thiện, dễ sử dụng, Monkey cho phép nhà tuyển dụng đăng tin tuyển dụng, tìm kiếm ứng viên phù hợp dựa trên các tiêu chí cụ thể. Đồng thời, người tìm việc có thể tạo hồ sơ chuyên nghiệp, cập nhật thông tin cá nhân, và tìm kiếm các cơ hội việc làm phù hợp với năng lực và mong muốn. Monkey cam kết trở thành cầu nối tin cậy, giúp tối ưu hóa quá trình tuyển dụng và tìm việc, đồng hành cùng bạn trên con đường phát triển sự nghiệp.</p>
           </div>
         </div>
-        <div className='home__jobs home__container py-5'>
+        {/* <div className='home__jobs home__container py-5'>
           <div className='container text-center'>
             <p className='home__jobs--title fs-2'>Các công việc hiện có</p>
             <div className='home__jobs--container'>
               <div className='row'>
-                <div className='col-4'>
-                  <JobCard imgUrl={p1} location='Hanoi' title='Software Engineer' salary='10.000.000' role='Full-time'/>
-                </div>
-                <div className='col-4'>
-                  <JobCard imgUrl={p1} location='Hanoi' title='Software Engineer' salary='10.000.000' role='Full-time'/>
-                </div>
-                <div className='col-4'>
-                  <JobCard imgUrl={p1} location='Hanoi' title='Software Engineer' salary='10.000.000' role='Full-time'/>
-                </div>
+                {
+                  jobs && jobs.map((job, index) => (
+                    <div key={index} className='col-4'>
+                      <JobCard imgUrl={p1} location={job.location} title={job.title} salary={job.salary} jobType={job.jobType} status={job.status}/>
+                    </div>
+                  ))
+                }
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
     </div>
   )
 }

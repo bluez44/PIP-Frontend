@@ -65,15 +65,6 @@
     animation-duration: 1s;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
 @keyframes slideIn {
     from {
         transform: translateX(-100%);
@@ -81,4 +72,68 @@
     to {
         transform: translateX(0);
     }
+}
+
+@keyframes loading {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+.password-toggle {
+    transition: all .3s;
+    font-size: 20px;
+}
+
+.password-toggle:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.loading-icon {
+    font-size: 20px;
+}
+
+.loading-icon svg {
+    animation: loading 1s ease-in-out infinite;
+}
+
+.logout__container:hover {
+    cursor: pointer;
+}
+
+.logout__container:hover > .action_container {
+    cursor: pointer;
+    display: block;
+}
+
+.action_container {
+    display: none;
+    position: absolute;
+    right: 0;
+    border-radius: 4px;
+    background-color: rgba( 255, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba( 0, 0, 0, 0.4);
+    animation: fadeIn .5s ease-in-out;
+    overflow: hidden;
+}
+
+.action__button {
+    height: 30px;
+    line-height: normal;
+    align-content: center;
+}
+
+.action__button::after {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 100%;
+    height: 10px;
+    background-color: transparent;
+    top: -10px;
+    left: 0;
 }
