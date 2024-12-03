@@ -51,9 +51,9 @@ export default function JobDetails() {
         }).catch(err => console.log('err', err))
     }
     // if(isLogin)
-    if(counter.current)
+    // if(counter.current)
         getJob()
-    else counter.current = 1
+    // else counter.current = 1
   }, [])
 
   const handleOnClick = () => {
