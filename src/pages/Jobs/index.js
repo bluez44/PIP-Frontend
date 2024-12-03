@@ -78,9 +78,9 @@ export default function Jobs() {
       })
     }
 
-    if(counter.current) 
+    // if(counter.current) 
       getJobs()
-    else counter.current = 1
+    // else counter.current = 1
   }, [])
 
   useMemo(() => {
