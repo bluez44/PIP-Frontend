@@ -8,7 +8,7 @@ const UserInfoPage = () => {
         gender: 'Female',
         language: 'English',
         phone: '123-456-7890',
-        birthday: '1995-05-15',
+        birthday: '1995-05-15', // Stored as a string in YYYY-MM-DD format
         country: 'USA',
         cv: '',
         status: 'Active',
@@ -21,6 +21,12 @@ const UserInfoPage = () => {
     const handleInputChange = (e) => {
         const { id, value } = e.target;
         setTempInfo({ ...tempInfo, [id]: value });
+    };
+
+    // Format date as dd/mm/yyyy
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-'); // Splitting the date string
+        return `${day}/${month}/${year}`; // Returning as dd/mm/yyyy
     };
 
     // Confirm edit and save the changes
@@ -104,7 +110,7 @@ const UserInfoPage = () => {
                             <input
                                 type="text"
                                 id="birthday"
-                                value={userInfo.birthday}
+                                value={formatDate(userInfo.birthday)} // Format the birthday in dd/mm/yyyy format
                                 readOnly
                                 className="readonly-input"
                             />
