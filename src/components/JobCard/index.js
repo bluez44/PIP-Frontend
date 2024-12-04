@@ -28,7 +28,7 @@ export default function JobCard( {imgUrl, job, recruiterId} ) {
         <div className='job__card__description'>
             <p className='job__card__description--title fs-3'>{job.title}</p>
             <p className='job__card__description--salary'>{job.salary}</p>
-            <p className='job__card__description--role'>{job.jobType} - <span className={`${job.status === 'open' ? 'text-success' : 'text-danger'}`}>{job.status}</span></p>
+            <p className='job__card__description--role text-uppercase'>{job.jobType} - <span className={`${job.status === 'open' ? 'text-success' : 'text-danger'}`}>{job.status}</span></p>
         </div>
 
         <hr/>

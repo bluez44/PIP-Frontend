@@ -19,7 +19,7 @@ export default function PostedJob() {
 
   useEffect( () => {
     if(!isLogin) {
-      toast.warn('Vui lòng đăng nhập')
+      // toast.warn('Vui lòng đăng nhập')
       navigate('/')
     }
     async function getJobs() {
@@ -49,15 +49,19 @@ export default function PostedJob() {
             <div className='col-12 job__container--list'>
               <div className='row'>
               {
-                jobs && jobs.map((job, index) => (
-                  <div key={index} className='col-6'>
+                jobs.length ? jobs.map((job, index) => (
+                  <div key={index} className='col-12 col-lg-6'>
                     <JobCard 
                       imgUrl={p1} 
                       job={job}
                       recruiterId={userInfor._id}
                     />
                   </div>
-                ))
+                )) : (
+                  <div className='col-12'>
+                    <h3 className='text-center'>User have not posted any job</h3>
+                  </div>
+                )
               }
               </div>           
             </div>

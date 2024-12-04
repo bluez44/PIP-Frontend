@@ -1,6 +1,6 @@
-﻿import React, { useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+﻿import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import './UserInfoPage.css';
-import { context, userInfo } from '../../App';
+import { context } from '../../App';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Cookies from 'js-cookie';
@@ -42,13 +42,12 @@ const UserInfoPage = () => {
         // console.log(userInfor.address)
     }, [provinces, userInfor.address])
 
-    const counter = useRef(0)
-
     const navigate = useNavigate()
 
     useEffect(() => {
         async function getResumes() {
             const token = Cookies.get('token');
+            console.log('get resumes')
             await axios.get('/api/v1/resumes', 
             {
                 headers: {
@@ -70,7 +69,8 @@ const UserInfoPage = () => {
             .catch(err => console.log(err))
         }
 
-        if(isLogin && role == 'job-seeker') {
+        
+        if(isLogin && userRole === 'job-seeker') {
             setIsLoading(true)
 
             getResumes()
@@ -79,14 +79,14 @@ const UserInfoPage = () => {
 
         }
 
-    }, [isLogin])
+    }, [isLogin, userRole])
 
     // console.log(provinces)
 
     useEffect(() => {
         const token = Cookies.get('token');
         if(!token) {
-            toast.warn('Vui lòng đăng nhập')
+            // toast.warn('Vui lòng đăng nhập')
             navigate('/')
         }
     })
@@ -108,7 +108,7 @@ const UserInfoPage = () => {
 
             setResumes([...newResume])
 
-            toast.success(res.data.message)
+            toast.success('Xóa hồ sơ thành công')
 
         }).catch(err => console.log(err))                                                                                                          
     }
@@ -156,13 +156,13 @@ const UserInfoPage = () => {
                                     className="btn btn-success me-2"
                                     onClick={() => setIsEditing(false)}
                                 >
-                                    Save
+                                    Lưu
                                 </button>
                                 <button 
                                     className="btn btn-danger"
                                     onClick={handleCancel}
                                 >
-                                    Cancel
+                                    Hủy
                                 </button>
                             </div>
                             
@@ -171,7 +171,7 @@ const UserInfoPage = () => {
                                 className="btn btn-warning"
                                 onClick={() => setIsEditing(true)}
                             >
-                                Edit
+                                Chỉnh sửa thông tin
                             </button>
                         )
                     }
@@ -180,11 +180,11 @@ const UserInfoPage = () => {
                 {/* Info Groups */}
                 <div className="info-groups">
                     <div className="info-group">
-                        <label htmlFor="fullName">Full Name</label>
+                        <label htmlFor="fullName">Họ và tên</label>
                         <input
                             type="text"
                             id="fullName"
-                            placeholder="Your First Name"
+                            placeholder="Họ và tên của bạn"
                             value={userInfor ? userInfor.fullName : ''}
                             onChange={handleInputChange}
                             disabled={!isEditing}
@@ -193,7 +193,7 @@ const UserInfoPage = () => {
                     {userRole !== 'recruiter' &&
                         <div className={`info-group position-relative address_group`}
                         >
-                            <label htmlFor="address">Address</label>
+                            <label htmlFor="address">Địa chỉ</label>
                             <input
                                 ref={address_input}
                                 type="text"
@@ -228,7 +228,7 @@ const UserInfoPage = () => {
                         </div>
                     }
                     <div className="info-group">
-                        <label htmlFor="age">Age</label>
+                        <label htmlFor="age">Tuổi</label>
                         <input
                             type="number"
                             id="age"
@@ -238,20 +238,20 @@ const UserInfoPage = () => {
                         />
                     </div>
                     <div className="info-group">
-                        <label htmlFor="gender">Gender</label>
+                        <label htmlFor="gender">Giới tính</label>
                         <select id="gender" value={userInfor ? userInfor.gender : ""} disabled={!isEditing} onChange={handleInputChange}>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                            <option value="other">Other</option>
+                            <option value="female">Nữ</option>
+                            <option value="male">Nam</option>
+                            <option value="other">Khác</option>
                         </select>
                     </div>
                     {userRole === 'recruiter' &&
                         <div className="info-group">
-                            <label htmlFor="country">Company name</label>
+                            <label htmlFor="company">Tên công ty</label>
                             <input
                                 type="text"
                                 id="company"
-                                placeholder="Your First Name"
+                                placeholder="Tên công ty"
                                 value={userInfor? userInfor.company : ""}
                                 onChange={handleInputChange}
                                 disabled={!isEditing}
@@ -260,11 +260,11 @@ const UserInfoPage = () => {
                     }
 
                     <div className="info-group">
-                        <label htmlFor="phone">Phone</label>
+                        <label htmlFor="phone">Số điện thoại</label>
                         <input
                             type="text"
                             id="phone"
-                            placeholder="Your First Name"
+                            placeholder="Số điện thoại của bạn"
                             value={userInfor ? userInfor.phone : ''}
                             onChange={handleInputChange}
                             disabled={!isEditing}
@@ -273,17 +273,17 @@ const UserInfoPage = () => {
 
                     {userRole !== 'recruiter' &&
                         <div className="info-group">
-                            <label htmlFor="status">Status</label>
+                            <label htmlFor="status">Trạng thái</label>
                             <select id="status" value={userInfor ? userInfor.status : ""} disabled={!isEditing} onChange={handleInputChange}>
-                                <option value="finding">Finding</option>
-                                <option value="accepted">Accepted</option>
+                                <option value="finding">Tìm kiếm việc làm</option>
+                                <option value="accepted">Đã có việc làm</option>
                             </select>
                         </div>
                     }
 
                     {userRole !== 'recruiter' &&
                         <div className="info-group">
-                            <p>My cv</p>
+                            <p>Hồ sơ của tôi</p>
                             <ul className='resume_list'>
                                 {
                                     resumes.map((resume, index) => (
@@ -325,7 +325,7 @@ const UserInfoPage = () => {
                                         setResumeModalType('add')
                                     }}
                                 >
-                                    <span>Add more resume</span>
+                                    <span>Thêm hồ sơ</span>
                                     <IoAddCircleOutline className='mt-1'/>
                                 </div>
                             }

@@ -30,7 +30,7 @@ export default function PostedJobDetails() {
 
   useEffect( () => {
       if(!isLogin) {
-        toast.warn('Vui lòng đăng nhập')
+        // toast.warn('Vui lòng đăng nhập')
         navigate('/')
       }
 
@@ -62,11 +62,11 @@ export default function PostedJobDetails() {
   }, [])
 
 
-  const handleReviewResume = (id) => {
+  const handleReviewResume = (jobId, resumeId, index) => {
     setIsLoading(true)
     const token = Cookies.get('token');
-    axios.patch(`/api/v1/jobs/review/${id}`, 
-    id,
+    axios.patch(`/api/v1/jobs/review/${jobId}/${resumeId}`, 
+        resumeId,
     {
         headers: {
             'authorization': `token ${token}`
@@ -76,8 +76,16 @@ export default function PostedJobDetails() {
             toast.error(res.data.message)
         }
         else {
+            console.log(res)
             toast.success(res.data.message)
             setIsLoading(false)
+            setJob(prev => {
+                const newJob = {...prev}
+
+                newJob.resumes[index].status = 'accept'
+
+                return newJob
+            })
         }
         console.log(res.data)
     }).catch(err => console.log('err', err))
@@ -192,10 +200,19 @@ export default function PostedJobDetails() {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className='d-flex gap-2 align-self-end' style={{maxHeight: '50px'}}>
-                                    <button className='btn btn-success' onClick={e => handleReviewResume(resume._id)}>Accept</button>
-                                    <button className='btn btn-danger'>Deny</button>
-                                </div>
+                                {
+                                    resume.status === 'accept'? (
+                                        <div className='text-success d-flex align-items-center'>
+                                            <p>Đã chấp nhận</p>
+                                        </div>
+                                    ) :
+                                    (
+                                        <div className='d-flex gap-2 align-self-end' style={{maxHeight: '50px'}}>
+                                            <button className='btn btn-success' onClick={e => handleReviewResume(job._id,  resume._id, index)}>Accept</button>
+                                            <button className='btn btn-danger'>Deny</button>
+                                        </div>
+                                    )
+                                }
                             </div>
                         ) )
                     }
@@ -203,7 +220,7 @@ export default function PostedJobDetails() {
             </div>
 
             <div className='text-center'>
-                <button className='btn btn-danger' onClick={e => handleDelteJob(jobId)}>Delte this job</button>
+                <button className='btn btn-danger' onClick={e => handleDelteJob(jobId)}>Xóa tin tuyển dụng này</button>
             </div>
         </div>
     </div>

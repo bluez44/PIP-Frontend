@@ -10,7 +10,7 @@ export default function Footer() {
         <div className='container'>
             <div className='row'>
                 
-                <div className="col-md-4 col-sm-6">
+                <div className="col-md-4 col-sm-12 text-center text-md-start">
                     <div className="footer-info">
                         <div className="section-title">
                             <h2>Headquarter</h2>
@@ -32,7 +32,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="col-md-4 col-sm-6">
+                <div className="col-md-4 col-sm-12 text-center text-md-start">
                     <div className="footer-info">
                         <div className="section-title">
                             <h2>Contact Info</h2>
@@ -44,7 +44,7 @@ export default function Footer() {
 
                         <div className="footer_menu">
                             <h2>Quick Links</h2>
-                            <ul>
+                            <ul className="p-0">
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about-us.html">About Us</a></li>
                                 <li><a href="terms.html">Terms & Conditions</a></li>
@@ -54,7 +54,7 @@ export default function Footer() {
                     </div>
                 </div>
 
-                <div className="col-md-4 col-sm-12">
+                <div className="col-md-4 col-sm-12 text-center text-md-start">
                     <div className="footer-info newsletter-form">
                         <div className="section-title">
                             <h2>Newsletter Signup</h2>

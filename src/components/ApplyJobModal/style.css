@@ -27,3 +27,8 @@
     background-color: #dddddd;
     cursor: pointer;
 }
+
+.resumes_list_item--disabled:hover {
+    cursor: not-allowed;
+    background-color: #fff;
+}

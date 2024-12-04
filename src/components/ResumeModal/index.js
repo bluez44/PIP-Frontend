@@ -10,8 +10,8 @@ import { toast } from 'react-toastify';
 export default function ResumeModal({ resume, handleClose, type = 'normal', setResumes, resumeIndex }) {
   const [skills, setSkills] = useState([])
   const [languages, setLanguages] = useState([])
-  const [editableSkills, setEditableSkills] = useState(resume.skills.split(','))
-  const [editableLanguages, setEditableLanguages] = useState(resume.languages.split(','))
+  const [editableSkills, setEditableSkills] = useState(resume?.skills?.split(','))
+  const [editableLanguages, setEditableLanguages] = useState(resume?.languages?.split(','))
 
   const [editableResume, setEditableResume] = useState(resume)
   const [newResume, setNewResume] = useState({})
@@ -214,47 +214,47 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
           >
             <form>
               <div className='resume__header fs-2'>
-                <input required onChange={e => handleOnEdit(e)} id='degree' value={editableResume.degree} placeholder="Enter resume's degree" className='w-50 mb-4 fs-2 text-center'/>
+                <input required onChange={e => handleOnEdit(e)} id='degree' value={editableResume.degree} placeholder="Nhập tên bằng" className='w-50 mb-4 fs-2 text-center'/>
               </div>
               <div className='row'>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>field</p>
-                  <input onChange={e => handleOnEdit(e)} id='field' type='text' value={editableResume.field} placeholder="Enter resume's field" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>lĩnh vực làm việc</p>
+                  <input onChange={e => handleOnEdit(e)} id='field' type='text' value={editableResume.field} placeholder="Nhập lĩnh vực làm việc" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>institution</p>
-                  <input onChange={e => handleOnEdit(e)} id='institution' type='text' value={editableResume.institution} placeholder="Enter resume's institution" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Tổ chức làm việc</p>
+                  <input onChange={e => handleOnEdit(e)} id='institution' type='text' value={editableResume.institution} placeholder="Nhập trường học/công ty" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>start date</p>
-                  <input onChange={e => handleOnEdit(e)} id='startDate' type="date" value={editableResume.startDate} placeholder="Enter resume's startDate" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Ngày bắt đầu</p>
+                  <input onChange={e => handleOnEdit(e)} id='startDate' type="date" value={editableResume.startDate} placeholder="Nhập ngày bắt đầu" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>end date</p>
-                  <input onChange={e => handleOnEdit(e)} id='endDate' type='date' value={editableResume.endDate} placeholder="Enter resume's endDate" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Ngày kết thúc</p>
+                  <input onChange={e => handleOnEdit(e)} id='endDate' type='date' value={editableResume.endDate} placeholder="Nhập ngày kết thúc" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>certifications</p>
-                  <input onChange={e => handleOnEdit(e)} id='certifications' type='text' value={editableResume.certifications} placeholder="Enter resume's certifications" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Chứng chỉ</p>
+                  <input onChange={e => handleOnEdit(e)} id='certifications' type='text' value={editableResume.certifications} placeholder="Nhập chứng chỉ" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>experience</p>
-                  <input onChange={e => handleOnEdit(e)} id='experience' type='text' value={editableResume.experience} placeholder="Enter resume's experience" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Kinh nghiệm làm việc</p>
+                  <input onChange={e => handleOnEdit(e)} id='experience' type='text' value={editableResume.experience} placeholder="Nhập kinh nghiệm làm việc" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>position</p>
-                  <input onChange={e => handleOnEdit(e)} id='position' type='text' value={editableResume.position} placeholder="Enter resume's position" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Vị trí làm việc</p>
+                  <input onChange={e => handleOnEdit(e)} id='position' type='text' value={editableResume.position} placeholder="Nhập vị trí làm việc" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>description</p>
-                  <input onChange={e => handleOnEdit(e)} id='description' type='text' value={editableResume.description} placeholder="Enter resume's description" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Mô tả</p>
+                  <input onChange={e => handleOnEdit(e)} id='description' type='text' value={editableResume.description} placeholder="Nhập mô tả" className='resume__item__content w-100'/>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>skills</p>
+                  <p className='text-uppercase m-0'>Kỹ năng</p>
                   {
                     editableSkills.map((skill, index) => (
                       <div className='position-relative mb-2'>
-                        <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeEditableSkillInput(e, index)} id='skills' type='text' placeholder="Enter resume's skills" value={skill} className='resume__item__content w-100'/>
+                        <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeEditableSkillInput(e, index)} id='skills' type='text' placeholder="Nhập kỹ năng" value={skill} className='resume__item__content w-100'/>
                         <MdDeleteForever className='position-absolute end-0 delete_skill_icon' size={20} onClick={e => handleDeleteEditableSkill(index)}/>
                       </div>
                     ))
@@ -266,15 +266,15 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
                       ''
                     ])}
                   >
-                    Add more skill
+                    Thêm kỹ năng mới
                   </p>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>languages</p>
+                  <p className='text-uppercase m-0'>Ngôn ngữ</p>
                   {
                     editableLanguages.map((language, index) => (
                       <div className='position-relative mb-2'>
-                        <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeEditableLanguageInput(e, index)} id='skills' type='text' placeholder="Enter resume's language" value={language} className='resume__item__content w-100'/>
+                        <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeEditableLanguageInput(e, index)} id='skills' type='text' placeholder="Nhập ngôn ngữ" value={language} className='resume__item__content w-100'/>
                         <MdDeleteForever className='position-absolute end-0 delete_skill_icon' size={20} onClick={e => handleDeleteEditableLanguage(index)}/>
                       </div>
                     ))
@@ -286,18 +286,18 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
                       ''
                     ])}
                   >
-                    Add more language
+                    Thêm ngôn ngữ mới
                   </p>
                 </div>
                 <div className='col-6 mb-4'>
-                  <p className='text-uppercase m-0'>summary</p>
-                  <input onChange={e => handleOnEdit(e)} id='summary' type='text' value={editableResume.summary} placeholder="Enter resume's summary" className='resume__item__content w-100'/>
+                  <p className='text-uppercase m-0'>Tóm tắt</p>
+                  <input onChange={e => handleOnEdit(e)} id='summary' type='text' value={editableResume.summary} placeholder="Tóm tắt hồ sơ" className='resume__item__content w-100'/>
                 </div>
               </div>
 
               <div className='d-flex gap-2 justify-content-end'>
-                <button className={`btn btn-success ${!editableResume.degree? 'disabled' : ''}`} onClick={e => handleSaveChanges(e, editableResume._id, resumeIndex)}>Save changes</button>
-                <button className='btn btn-danger' onClick={handleClose}>Cancel</button>
+                <button className={`btn btn-success ${!editableResume.degree? 'disabled' : ''}`} onClick={e => handleSaveChanges(e, editableResume._id, resumeIndex)}>Lưu thay đổi</button>
+                <button className='btn btn-danger' onClick={handleClose}>Hủy</button>
               </div>
             </form>
           </div>
@@ -315,47 +315,47 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
         >
           <form>
             <div className='resume__header fs-2'>
-              <input required onChange={e => handleOnChange(e)} id='degree' placeholder="Enter resume's degree" className='w-50 mb-4'/>
+              <input required onChange={e => handleOnChange(e)} id='degree' placeholder="NHẬP TÊN BẰNG CẤP" className='w-50 mb-4'/>
             </div>
             <div className='row'>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>field</p>
-                <input onChange={e => handleOnChange(e)} id='field' type='text' placeholder="Enter resume's field" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Lĩnh vực làm việc</p>
+                <input onChange={e => handleOnChange(e)} id='field' type='text' placeholder="Nhập lĩnh vực làm việc" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>institution</p>
-                <input onChange={e => handleOnChange(e)} id='institution' type='text' placeholder="Enter resume's institution" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Tổ chức làm việc</p>
+                <input onChange={e => handleOnChange(e)} id='institution' type='text' placeholder="Nhập tên trường học/công ty" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>start date</p>
+                <p className='text-uppercase m-0'>Ngày bắt đầu</p>
                 <input onChange={e => handleOnChange(e)} id='startDate' type="date" placeholder="Enter resume's startDate" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>end date</p>
+                <p className='text-uppercase m-0'>Ngày kết thúc</p>
                 <input onChange={e => handleOnChange(e)} id='endDate' type='date' placeholder="Enter resume's endDate" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>certifications</p>
-                <input onChange={e => handleOnChange(e)} id='certifications' type='text' placeholder="Enter resume's certifications" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Chứng chỉ</p>
+                <input onChange={e => handleOnChange(e)} id='certifications' type='text' placeholder="Nhập chứng chỉ" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>experience</p>
-                <input onChange={e => handleOnChange(e)} id='experience' type='text' placeholder="Enter resume's experience" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Kinh nghiệm làm việc</p>
+                <input onChange={e => handleOnChange(e)} id='experience' type='text' placeholder="Nhập kinh nghiệm làm việc" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>position</p>
-                <input onChange={e => handleOnChange(e)} id='position' type='text' placeholder="Enter resume's position" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Vị trí làm việc</p>
+                <input onChange={e => handleOnChange(e)} id='position' type='text' placeholder="Nhập vị trí làm việc" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>description</p>
-                <input onChange={e => handleOnChange(e)} id='description' type='text' placeholder="Enter resume's description" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Mô tả</p>
+                <input onChange={e => handleOnChange(e)} id='description' type='text' placeholder="Nhập mô tả" className='resume__item__content w-100'/>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>skills</p>
+                <p className='text-uppercase m-0'>Kỹ năng</p>
                 {
                   skills.map((skill, index) => (
                     <div className='position-relative mb-2'>
-                      <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeSkillInput(e, index)} id='skills' type='text' placeholder="Enter resume's skills" value={skill} className='resume__item__content w-100'/>
+                      <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeSkillInput(e, index)} id='skills' type='text' placeholder="Nhập kỹ năng" value={skill} className='resume__item__content w-100'/>
                       <MdDeleteForever className='position-absolute end-0 delete_skill_icon' size={20} onClick={e => handleDeleteSkill(index)}/>
                     </div>
                   ))
@@ -367,15 +367,15 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
                     ''
                   ])}
                 >
-                  Add more skill
+                  Thêm kỹ năng mới
                 </p>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>languages</p>
+                <p className='text-uppercase m-0'>Ngôn ngữ</p>
                 {
                   languages.map((language, index) => (
                     <div className='position-relative mb-2'>
-                      <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeLanguageInput(e, index)} id='skills' type='text' placeholder="Enter resume's language" value={language} className='resume__item__content w-100'/>
+                      <input autoFocus={index === skills.length - 1} key={index} onChange={e => handleChangeLanguageInput(e, index)} id='skills' type='text' placeholder="Nhập ngôn ngữ" value={language} className='resume__item__content w-100'/>
                       <MdDeleteForever className='position-absolute end-0 delete_skill_icon' size={20} onClick={e => handleDeleteLanguage(index)}/>
                     </div>
                   ))
@@ -387,18 +387,18 @@ export default function ResumeModal({ resume, handleClose, type = 'normal', setR
                     ''
                   ])}
                 >
-                  Add more language
+                  Thêm ngôn ngữ mới
                 </p>
               </div>
               <div className='col-6 mb-4'>
-                <p className='text-uppercase m-0'>summary</p>
-                <input onChange={e => handleOnChange(e)} id='summary' type='text' placeholder="Enter resume's summary" className='resume__item__content w-100'/>
+                <p className='text-uppercase m-0'>Tóm tắt hồ sơ</p>
+                <input onChange={e => handleOnChange(e)} id='summary' type='text' placeholder="Nhập tóm tắt" className='resume__item__content w-100'/>
               </div>
             </div>
 
             <div className='d-flex gap-2 justify-content-end'>
-              <button className={`btn btn-success ${!newResume.degree? 'disabled' : ''}`} onClick={e => handleSubmitResume(e)}>Add resume</button>
-              <button className='btn btn-danger' onClick={handleClose}>Cancel</button>
+              <button className={`btn btn-success ${!newResume.degree? 'disabled' : ''}`} onClick={e => handleSubmitResume(e)}>Thêm hồ sơ</button>
+              <button className='btn btn-danger' onClick={handleClose}>Hủy</button>
             </div>
           </form>
         </div>
