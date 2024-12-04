@@ -5,6 +5,7 @@ import './style.css'
 import axios from '../../api'
 import LoadingPage from '../LoadingPage'
 import { toast } from 'react-toastify'
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function ApplyJobModal({ onClick }) {
   const [resumes, setResumes] = useState([])
@@ -65,7 +66,23 @@ export default function ApplyJobModal({ onClick }) {
                 <ul className='resumes_list p-0 m-0 rounded'>
                     {
                         resumes.map((resume, index) => (
-                            <li key={index} className='text-center resumes_list_item' onClick={e => handleApply(resume._id)}>{resume.degree}</li>
+                            <li 
+                                key={index} 
+                                className={`text-center resumes_list_item position-relative ${resume.status === 'accept' && 'resumes_list_item--disabled'}`}
+                                onClick={e => {
+                                    if(resume.status !== 'accept') {
+                                        handleApply(resume._id)
+                                    }
+                                }}
+                            >
+                                <span>{resume.degree}</span>
+                                {
+                                    resume.status === 'accept' && 
+                                    <div className='position-absolute end-0 top-50 translate-middle'>
+                                        <FaCheckCircle className='text-success my-auto float-end'/>
+                                    </div>
+                                }
+                            </li>
                         ))
                     }
                 </ul>

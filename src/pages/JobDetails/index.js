@@ -58,7 +58,7 @@ export default function JobDetails() {
 
   const handleOnClick = () => {
     if(!isLogin) {
-        toast.info('Vui lòng đăng nhập')
+        // toast.info('Vui lòng đăng nhập')
     }
     else {
         setIsShowApplyModal(true)
@@ -120,7 +120,7 @@ export default function JobDetails() {
                 </div>
 
                 {job.status === 'open' && userRole == 'job-seeker' &&
-                    <div className='w-25'>
+                    <div className='w-25 w-md-50'>
                         <MyButton text='Ứng tuyển' rounded='pill' onClick={handleOnClick}/>
                     </div>
                 }

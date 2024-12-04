@@ -111,8 +111,8 @@ export default function Jobs() {
         isLoading && <LoadingPage />
       }
         <div className='container'>
-          <div className='row'>
-            <div className='col-3'>
+          <div className='row flex-md-column flex-lg-row'>
+            <div className='col-12 col-lg-3'>
               <p className='text-center'>Tìm kiếm công việc phù hợp</p>
               <div className='position-relative my-4'>
                 <input ref={jobNameInput} className='w-100 p-2 job__search__input rounded' placeholder='Nhập tên công việc' value={jobName} onChange={(e) => setJobName(e.target.value)}/>
@@ -120,32 +120,34 @@ export default function Jobs() {
               </div>
               <hr/>
               <div className='position-relative my-4'>
-                <p>Job type</p>
+                <p>Loại công việc</p>
                 <form>
                   <input type="checkbox" id="jobType1" name="jobType1" onChange={e => handleJobType(e.target.value)} value="full-time"/>
-                  <label className='text-uppercase ms-2' htmlFor="jobType1"> full-time</label><br/>
+                  <label className='text-uppercase ms-2' htmlFor="jobType1">Toàn thời gian</label><br/>
 
                   <input type="checkbox" id="jobType2" name="jobType2" onChange={e => handleJobType(e.target.value)} value="contract"/>
-                  <label className='text-uppercase ms-2' htmlFor="jobType2"> contract </label><br/>
+                  <label className='text-uppercase ms-2' htmlFor="jobType2">Hợp đồng</label><br/>
 
                   <input type="checkbox" id="jobType3" name="jobType3" onChange={e => handleJobType(e.target.value)} value="part-time"/>
-                  <label className='text-uppercase ms-2' htmlFor="jobType3"> part-time</label>
+                  <label className='text-uppercase ms-2' htmlFor="jobType3">Bán thời gian</label>
                 </form>
               </div>
             </div>
-            <div className='col-9 job__container--list'>
-              <div className='d-flex justify-content-center align-items-center mb-4'>
+            <div className='col-12 col-lg-9 job__container--list'>
+              <div className='d-none justify-content-center align-items-center mb-4 d-lg-flex d-sm-none'>
                 <ul className='pagination gap-1'>
                     <li className={`page-item rounded d-flex align-items-center`} onClick={e => handlePageChange(e, pageNum - 1)}><GrPrevious /></li>
                     <li className={`page-item rounded d-flex align-items-center ${pageNum === 1 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 1)}>1</li>
                     <li className={`page-item rounded d-flex align-items-center ${pageNum === 2 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 2)}>2</li>
+                    <li className={`page-item rounded d-flex align-items-center ${pageNum === 3 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 3)}>3</li>
+                    <li className={`page-item rounded d-flex align-items-center ${pageNum === 4 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 4)}>4</li>
                     <li className={`page-item rounded d-flex align-items-center`} onClick={e => handlePageChange(e, pageNum + 1)}><GrNext /></li>
                </ul>
               </div>
               <div className='row'>
               {
                 filtedJobs.length ? filtedJobs.map((job, index) => (
-                  <div key={index} className='col-6'>
+                  <div key={index} className='col-12 col-sm-12 col-lg-6'>
                     <JobCard 
                       imgUrl={p1} 
                       job={job}
@@ -162,6 +164,8 @@ export default function Jobs() {
                     <li className={`page-item rounded d-flex align-items-center`} onClick={e => handlePageChange(e, pageNum - 1)}><GrPrevious /></li>
                     <li className={`page-item rounded d-flex align-items-center ${pageNum === 1 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 1)}>1</li>
                     <li className={`page-item rounded d-flex align-items-center ${pageNum === 2 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 2)}>2</li>
+                    <li className={`page-item rounded d-flex align-items-center ${pageNum === 3 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 3)}>3</li>
+                    <li className={`page-item rounded d-flex align-items-center ${pageNum === 4 ? 'page-item--active' : ''}`} onClick={e => handlePageChange(e, 4)}>4</li>
                     <li className={`page-item rounded d-flex align-items-center`} onClick={e => handlePageChange(e, pageNum + 1)}><GrNext /></li>
                   </ul>
               </div>        

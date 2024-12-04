@@ -17,7 +17,7 @@ export default function AddJob() {
 
     const navigate = useNavigate()
     useEffect(() => {
-        if(!login) {
+        if(!isLogin) {
             navigate('/')
         }
     }, [])
@@ -64,38 +64,47 @@ export default function AddJob() {
     <div className='container py-5'>
         <div className='row p-5 pt-0 rounded add_job__container'>
             <div className='col-12'>
-                <p className='fs-2 text-uppercase text-center'>add new job</p>
+                <p className='fs-2 text-uppercase text-center pt-4'>thêm tin tuyển dụng mới</p>
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>Title</p>
-                <input id='title' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter title' />
+                <p className='text-uppercase m-0'>Tiêu đề</p>
+                <input id='title' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập tiêu đề' />
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>description</p>
-                <input id='description' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter description' />
+                <p className='text-uppercase m-0'>Mô tả công việc</p>
+                <input id='description' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập mô tả' />
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>job type</p>
-                <input id='jobType' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter job type' />
+                <p className='text-uppercase m-0'>Loại công việc</p>
+                <select id='jobType' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập loại công việc'>
+                    <option value=''>Chọn loại công việc</option>
+                    <option value='full-time'>Toàn thời gian</option>
+                    <option value='part-time'>Bán thời gian</option>
+                    <option value='contract'>Theo hợp đồng</option>
+                </select>
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>location</p>
-                <input id='location' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter location' />
+                <p className='text-uppercase m-0'>địa điểm làm việc</p>
+                <input id='location' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập địa chỉ làm việc' />
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>requirements</p>
-                <input id='requirements' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter requirements' />
+                <p className='text-uppercase m-0'>yêu cầu</p>
+                <input id='requirements' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập yêu cầu công việc' />
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>salary</p>
-                <input id='salary' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter salary' />
+                <p className='text-uppercase m-0'>lương</p>
+                <input id='salary' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập lương' />
             </div>
             <div className='col-6'>
-                <p className='text-uppercase m-0'>status</p>
-                <input id='status' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Enter status' />
+                <p className='text-uppercase m-0'>trạng thái công việc</p>
+                <select id='status' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Chọn trạng thái công việc'>
+                    <option value=''>Chọn trạng thái</option>
+                    <option value='open'>Mở</option>
+                    <option value='closed'>Đóng</option>
+                </select>
             </div>
             <div className='col-12 text-end'>
-                <button className="btn btn-success mb-5" onClick={e => handleAddJob()}>Add job</button>
+                <button className="btn btn-success mb-5" onClick={e => handleAddJob()}>Thêm tin tuyển dụng</button>
             </div>
         </div>
     </div>

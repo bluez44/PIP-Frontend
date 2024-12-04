@@ -36,39 +36,39 @@ function App() {
   const [isLoading, setIsLoading] = useState(false)
   const count = useRef(0)
   
-  useEffect(() => {
-    // window.localStorage.clear();
-    // Cookies.remove('token');
-    if(count.current) {
-      const token = Cookies.get('token');
-      if(token) {
-        setIsLoading(true)
-        setIsLogin(true);
-        axios.get(
-          `api/v1/${role}/detail`,
-          {
-            headers: {
-              'authorization': `token ${token}`
-            },
-          }
-        ).then(res => {
-          // console.log('res.data', res.data);
+  // useEffect(() => {
+  //   // window.localStorage.clear();
+  //   // Cookies.remove('token');
+  //   if(count.current) {
+  //     const token = Cookies.get('token');
+  //     if(token) {
+  //       setIsLoading(true)
+  //       setIsLogin(true);
+  //       axios.get(
+  //         `api/v1/${role}/detail`,
+  //         {
+  //           headers: {
+  //             'authorization': `token ${token}`
+  //           },
+  //         }
+  //       ).then(res => {
+  //         // console.log('res.data', res.data);
 
-          const {jobSeeker, recruiter} = res.data
+  //         const {jobSeeker, recruiter} = res.data
 
-          setUserInfor(jobSeeker? jobSeeker : recruiter)
-          window.localStorage.setItem('userInfor', JSON.stringify(jobSeeker? jobSeeker : recruiter))
-          toast.success('Đăng nhập thành công');
-          setIsLoading(false)
+  //         setUserInfor(jobSeeker? jobSeeker : recruiter)
+  //         window.localStorage.setItem('userInfor', JSON.stringify(jobSeeker? jobSeeker : recruiter))
+  //         toast.success('Đăng nhập thành công');
+  //         setIsLoading(false)
           
-        }).catch(err => {
-          console.log(err)
-          toast.error(err.message);
-        })
-      }
-    }
-    else count.current = 1
-  }, [])
+  //       }).catch(err => {
+  //         console.log(err)
+  //         toast.error(err.message);
+  //       })
+  //     }
+  //   }
+  //   else count.current = 1
+  // }, [])
 
   return (
     <BrowserRouter 
