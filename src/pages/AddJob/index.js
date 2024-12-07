@@ -50,6 +50,7 @@ export default function AddJob() {
             console.log(res)
             toast.success(res.data.message)
             setIsLoading(false)
+            setNewJob({})
         }).catch(err => {
             console.log(err)
             toast.error(err.response.data.message)
