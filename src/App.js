@@ -35,6 +35,19 @@ function App() {
   const [userInfor, setUserInfor] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const count = useRef(0)
+
+  useEffect(() => {
+    window.addEventListener("beforeunload", handleReload);
+    return () => {
+      window.removeEventListener("beforeunload", handleReload);
+    };
+  }, []);
+  const handleReload = (e) => {
+    e.preventDefault();
+    e.returnValue = "";
+    window.localStorage.clear();
+    Cookies.remove('token');
+  };
   
   // useEffect(() => {
   //   // window.localStorage.clear();

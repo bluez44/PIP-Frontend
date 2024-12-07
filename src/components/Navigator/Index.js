@@ -50,6 +50,7 @@ export default function Navigator() {
 
   const [provinces, setProvinces] = useState([])
   const [filtedProvinces, setFiltedProvinces] = useState([])
+  const [companyFiltedProvinces, setCompanyFiltedProvinces] = useState([])
   const [isShowProvinceList, setIsShowProvinceList] = useState(false)
 
   const handleNewUserData = (e) => {
@@ -58,6 +59,7 @@ export default function Navigator() {
   }
 
   const [isLoading, setIsLoading] = useState(false)
+  const [isResetPassword, setIsResetPassword] = useState(false)
 
   const [userInfor, setUserInfor] = useContext(userInfo)
 
@@ -96,43 +98,44 @@ export default function Navigator() {
     })
   }
 
-  async function getProvinces() {
-    await fetch('https://provinces.open-api.vn/api')
-    .then(response => response.json())
-    .then(json => setProvinces(json))
-    .catch(err => console.log(err))
-  }
-
+  
   const handleAddressChange = (addr) => {
-    // address_input.current.focus()
-    setIsShowProvinceList(false)
     const value  = addr;
     setNewUser({...newUser, address: value });
   }
-
+  
   const handleCompanyAddressChange = (addr) => {
-    // address_input.current.focus()
-    setIsShowProvinceList(false)
+    // setIsShowProvinceList(false)
     const value  = addr;
     setNewUser({...newUser, addressOfCompany: value });
   }
-
+  
   console.log('provinces', provinces)
-
+  
   useEffect(() => {
     if(isShowProvinceList) {
+      async function getProvinces() {
+        await fetch('https://provinces.open-api.vn/api')
+        .then(response => response.json())
+        .then(json => setProvinces(json))
+        .catch(err => console.log(err))
+      }
       getProvinces()
     }
   }, [isShowProvinceList])
 
   useMemo(() => {
+    const newCompanyProvinces = provinces.filter((province) => province.name.toLowerCase().includes(newUser?.addressOfCompany?.toLowerCase() || ''))
 
-    const newProvinces = provinces.filter((province) => province.name.toLowerCase().includes(newUser?.address?.toLowerCase()))
+    setCompanyFiltedProvinces(newCompanyProvinces)
+}, [provinces, newUser.addressOfCompany])
+
+  useMemo(() => {
+
+    const newProvinces = provinces.filter((province) => province.name.toLowerCase().includes(newUser?.address?.toLowerCase() || ''))
 
     setFiltedProvinces(newProvinces)
 
-    // console.log(newProvinces)
-    // console.log(userInfor.address)
 }, [provinces, newUser.address])
 
   // !----------------------------------------------------------------
@@ -253,7 +256,7 @@ export default function Navigator() {
 
   const handleResetPassword = async (e) => {
     e.preventDefault()
-    setIsLoading(true)
+    setIsResetPassword(true)
     await axios.post(
       `/api/v1/${userRole}/password/reset`,
       {
@@ -269,7 +272,7 @@ export default function Navigator() {
         toast.success(res.data.message)
         setIsOTPSuccess(false)
       }
-      setIsLoading(false)
+      setIsResetPassword(false)
     }).catch(err => {
       console.log(err)
       toast.error(err.message)
@@ -346,7 +349,7 @@ export default function Navigator() {
                 </div>
               }
           </Modal.Header>
-          <Modal.Body className='overflow-hidden'>
+          <Modal.Body className=''>
               {modalState === 'signup' &&
               <div id='signup' className='row'>
                 <p className='fs-5 fw-semibold text-center col-12'>Đăng ký tài khoản mới</p>
@@ -464,7 +467,7 @@ export default function Navigator() {
                       {isShowProvinceList && 
                           <ul className='provinces_list position-absolute w-100'>
                               {
-                                  provinces.map(province => (
+                                  filtedProvinces.map(province => (
                                       <li className='provinces_item' 
                                           key={province.code} 
                                           onClick={e => handleAddressChange(province.name)}
@@ -499,7 +502,7 @@ export default function Navigator() {
                       {isShowProvinceList && 
                           <ul className='provinces_list position-absolute w-100'>
                               {
-                                  provinces.map(province => (
+                                  companyFiltedProvinces.map(province => (
                                       <li className='provinces_item' 
                                           key={province.code} 
                                           onClick={e => handleCompanyAddressChange(province.name)}
@@ -629,6 +632,11 @@ export default function Navigator() {
                     />
                   </Form.Group>
                   {/* <p className='text-success text-center'>Đã gửi OTP đến gmail của bạn</p> */}
+                  {
+                  isLoading ? 
+                  <div className='text-center loading-icon'>
+                    <AiOutlineLoading3Quarters />
+                  </div> :                                          
                   <MyButton 
                     disable={forgotEmail === ''} 
                     text='Nhận mã OTP' 
@@ -637,6 +645,7 @@ export default function Navigator() {
                       handleSendOTP(e)
                     }}
                   />
+                  }
                   <Button variant='link'>Gửi lại OTP</Button>
                   {isOTPSuccess && <p className='text-success text-center'>Xác thực OTP thành công</p>}
                   {isOTPSuccess && 
@@ -644,7 +653,7 @@ export default function Navigator() {
                     className="mb-3 form_input text-start"
                     controlId="forgotForm.ResetPassword"
                   >
-                    <Form.Label>New password</Form.Label>
+                    <Form.Label>Mật khẩu mới</Form.Label>
                     <Form.Control 
                       type='password'
                       placeholder='Nhập mật khẩu mới'
@@ -652,7 +661,16 @@ export default function Navigator() {
                       onChange={(e) => setNewPassword(e.target.value)}
                     />
                   </Form.Group>}
-                  {isOTPSuccess && <MyButton onClick={e => handleResetPassword(e)} text='Sử dụng mật khẩu mới'/>}
+                  {isOTPSuccess && 
+                  !isResetPassword &&
+                  <MyButton onClick={e => handleResetPassword(e)} text='Sử dụng mật khẩu mới'/>
+                  }
+                  {
+                    isResetPassword && 
+                    <div className='text-center loading-icon'>
+                      <AiOutlineLoading3Quarters />
+                    </div>
+                  }
                 </Form>
               </div>
               }

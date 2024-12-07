@@ -1,0 +1,23 @@
+.provinces_list {
+    /* display: none; */
+    top: 80px;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn ease .3s;
+}
+
+.provinces_item {
+    padding: 10px;
+    transition: all .3s;
+}
+
+.provinces_item:hover {
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
