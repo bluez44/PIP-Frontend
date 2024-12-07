@@ -56,9 +56,9 @@ export default function PostedJobDetails() {
     }
 
     // if(isLogin)
-    if(counter.current)
+    // if(counter.current)
         getJob()
-    else counter.current = 1
+    // else counter.current = 1
   }, [])
 
 
