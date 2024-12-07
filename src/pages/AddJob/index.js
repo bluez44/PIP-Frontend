@@ -6,6 +6,8 @@ import './style.css'
 import { context } from '../../App'
 import axios from '../../api'
 import { toast } from 'react-toastify'
+import ProvinceList from '../../components/ProvinceList'
+import LoadingPage from '../../components/LoadingPage'
 export default function AddJob() {
     const [login, role] = useContext(context)
     const [isLogin, setIslogin] = login 
@@ -14,6 +16,10 @@ export default function AddJob() {
     const [jsonJob, setJsonJob] = useState('')
 
     const [newJob, setNewJob] = useState({})
+
+    const [isShowProvinceList, setIsShowProvinceList] = useState(false)
+
+    const [isLoading, setIsLoading] = useState(false)
 
     const navigate = useNavigate()
     useEffect(() => {
@@ -31,6 +37,7 @@ export default function AddJob() {
     console.log(newJob)
 
     const handleAddJob = () => {
+        setIsLoading(true)
         const token = Cookies.get('token')
         axios.post('/api/v1/jobs/create',
             newJob,
@@ -42,7 +49,13 @@ export default function AddJob() {
         ).then(res => {
             console.log(res)
             toast.success(res.data.message)
-        }).catch(err => console.log(err))
+            setIsLoading(false)
+        }).catch(err => {
+            console.log(err)
+            toast.error(err.response.data.message)
+            setIsLoading(false)
+        })
+
     }
 
     const handleAddJsonJob = () => {
@@ -62,6 +75,7 @@ export default function AddJob() {
 
   return (
     <div className='container py-5'>
+        {isLoading && <LoadingPage />}
         <div className='row p-5 pt-0 rounded add_job__container'>
             <div className='col-12'>
                 <p className='fs-2 text-uppercase text-center pt-4'>thêm tin tuyển dụng mới</p>
@@ -83,9 +97,23 @@ export default function AddJob() {
                     <option value='contract'>Theo hợp đồng</option>
                 </select>
             </div>
-            <div className='col-6'>
+            <div className='col-6 position-relative'>
                 <p className='text-uppercase m-0'>địa điểm làm việc</p>
-                <input id='location' type='text' className='w-100 add_job__input mb-4 rounded' onChange={e => handleInputChange(e)} placeholder='Nhập địa chỉ làm việc' />
+                <input 
+                    id='location' 
+                    type='text' 
+                    className='w-100 add_job__input mb-4 rounded' 
+                    onChange={e => handleInputChange(e)} 
+                    placeholder='Nhập địa chỉ làm việc' 
+                    onFocus={() => setIsShowProvinceList(true)}
+                    onBlur={() => {
+                        setTimeout(() => {
+                            setIsShowProvinceList(false)
+                        }, 100)
+                    }}
+                    value={newJob?.location? newJob.location : ''}
+                />
+                {  isShowProvinceList && <ProvinceList isShowProvinceList={isShowProvinceList} location={newJob.location} setNewJob={setNewJob}/>}
             </div>
             <div className='col-6'>
                 <p className='text-uppercase m-0'>yêu cầu</p>

@@ -58,7 +58,7 @@ export default function JobDetails() {
 
   const handleOnClick = () => {
     if(!isLogin) {
-        // toast.info('Vui lòng đăng nhập')
+        toast.info('Vui lòng đăng nhập')
     }
     else {
         setIsShowApplyModal(true)

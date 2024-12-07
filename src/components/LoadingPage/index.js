@@ -7,7 +7,7 @@ export default function LoadingPage() {
   
   return (
     <div 
-        className='position-fixed top-0 left-0 right-0 bottom-0 d-flex justify-content-center align-items-center placeholder-wave container-fluid'
+        className='position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center placeholder-wave container-fluid'
         style={{backgroundColor: 'rgba(255, 255, 255, 1)', width: '100%', height: '100%', zIndex: 9999}}
     >
         <div className='d-flex align-items-center justify-content-center gap-0 gap-md-4'>
