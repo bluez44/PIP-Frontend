@@ -94,7 +94,7 @@ export default function Navigator() {
     }).catch(err => {
       console.log(err)
       setIsLoading(false)
-      // toast.error(err.response.data.message)
+      toast.error(err.response.data.message)
     })
   }
 
